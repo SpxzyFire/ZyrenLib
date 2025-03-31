@@ -107,27 +107,3 @@ Zyren:SetTheme({
     -- Add all theme properties...
 })
 ```
-
-```lua
-local CombatTab = Zyren:CreateTab("Combat")
-local MainGroup = CombatTab:CreateGroup("Main", "left")
-```
-```lua
-MainGroup:AddToggle({
-    Text = "Aimbot",
-    Default = false,
-    Callback = function(val)
-        _G.AimbotEnabled = val
-    end
-})
-```
-```lua
-MainGroup:AddSlider({
-    Text = "Aimbot Smoothing",
-    Min = 1,
-    Max = 10,
-    Default = 5,
-    Callback = function(val)
-        _G.AimbotSmoothing = val
-    end
-})```
