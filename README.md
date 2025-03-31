@@ -1,7 +1,7 @@
 ### ZyrenLib Documentation
 
 ```lua
-local Zyren = loadstring(game:HttpGet("[https://raw.githubusercontent.com/YourUsername/ZyrenLib/main/Source.lua](https://raw.githubusercontent.com/SpxzyFire/ZyrenLib/refs/heads/main/Source.lua)"))({
+local Zyren = loadstring(game:HttpGet("https://raw.githubusercontent.com/SpxzyFire/ZyrenLib/refs/heads/main/Source.lua"))({
     WindowTitle = "Your UI Title",
     ColorTheme = "Synapse"  -- Choose from: Synapse, Dark, Red, Ocean, Midnight, GrapeTheme
 })
