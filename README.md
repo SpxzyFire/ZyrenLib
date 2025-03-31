@@ -1,87 +1,133 @@
-# ZyrenLib
-This documentation is for the stable release of ZyrenLib.
+Basic Usage
+Creating UI Structure
+lua
+Copy
+-- Create tabs
+local MainTab = Zyren:CreateTab("Main")
+local SettingsTab = Zyren:CreateTab("Settings")
 
-## Booting the Library
-```lua
-local Zyren = loadstring(game:HttpGet("https://raw.githubusercontent.com/SpxzyFire/ZyrenLib/refs/heads/main/Source.lua"))({
-    WindowTitle = "Your Title",  -- Window title text
-    ColorTheme = "Synapse"       -- Theme name (Synapse, Dark, Red, Ocean, Midnight, GrapeTheme)
-})
-```
-## Creating a Tab
-```lua
-local Tab = Zyren:CreateTab("Main")
+-- Create group boxes (left/right columns)
+local CombatGroup = MainTab:CreateGroup("Combat", "left")
+local VisualGroup = MainTab:CreateGroup("Visuals", "right")
+Adding Controls
+Button:
 
-```
-## Creating Groupboxes
 ```lua
-local LeftGroupbox = Tab:CreateGroup("Combat", "left")  -- "left" or "right" column
-local RightGroupbox = Tab:CreateGroup("Movement", "right")
-```
-You can add elements to sections the same way you would add them to a tab normally.
-
-## Creating a Button
-```lua
-Tab:AddButton({
-    Text = "Button",
+CombatGroup:AddButton({
+    Text = "Execute",
     Callback = function()
         print("Button pressed!")
+        -- Your code here
     end
 })
 ```
-
-
-## Creating Toggle
 ```lua
-Tab:AddToggle({
-    Text = "Toggle",
+CombatGroup:AddToggle({
+    Text = "Enable Aimbot",
     Default = false,
     Callback = function(value)
         print("Aimbot:", value)
+        -- Your toggle logic
     end
 })
 ```
 
-## Creating a Color Picker
-```lua
-Tab:AddColorPicker(config)
-    local ColorPicker = {
-        Name = "Color Picker",
-        Value = (255, 255, 255),
-        Callback = config.Callback
-    }
-    
-    -- Implementation would go here
-    -- Returns color picker object
-end
-```
-
-## Creating a Slider
 ```lua
 CombatGroup:AddSlider({
-    Text = "Slider",
+    Text = "Aimbot FOV",
     Min = 1,
     Max = 360,
     Default = 90,
-    Rounding = 1,
-    Suffix = "°",  -- Optional suffix
+    Rounding = 1,  -- Decimal precision (0 for integers)
+    Suffix = "°",
     Callback = function(value)
-        print(value)
+        print("FOV set to:", value)
+        -- Your slider logic
+    end
+})
+```
+```lua
+VisualGroup:AddColorPicker({
+    Text = "ESP Color",
+    Default = Color3.fromRGB(255, 0, 0),  -- Red
+    Callback = function(color)
+        print("Color changed to:", color)
+        -- Your color change logic
+    end
+})
+```
+```lua
+CombatGroup:AddDropdown({
+    Text = "Weapon Selection",
+    Default = "AK-47",
+    Options = {"AK-47", "M4A1", "AWP", "Deagle"},
+    Callback = function(value)
+        print("Selected:", value)
+        -- Your selection logic
     end
 })
 ```
 
-## Creating a Dropdown menu
 ```lua
-function Group:AddDropdown(config)
-    local Dropdown = {
-        Name = "",
-        Value = "Default",
-        Options = ("Default, Default 2"),
-        Open = false
-    }
-    
-    -- Implementation would go here
-    -- Returns dropdown object
-end
+CombatGroup:AddKeybind({
+    Text = "Aimbot Key",
+    Default = Enum.KeyCode.E,
+    Callback = function(key)
+        print("Key pressed:", key)
+        -- Your keybind logic
+    end
+})
 ```
+
+```lua
+SettingsTab:AddTextbox({
+    Text = "Player Name",
+    Default = "",
+    Callback = function(text)
+        print("Input:", text)
+        -- Your text processing
+    end
+})
+```
+```lua
+SettingsTab:AddLabel({
+    Text = "Status: Ready",
+    Color = Color3.fromRGB(0, 255, 0)  -- Optional
+})
+```
+```lua
+-- Change values programmatically
+aimbotToggle:SetValue(true)  -- Turn on toggle
+Custom Themes
+lua
+Copy
+Zyren:SetTheme({
+    Background = Color3.fromRGB(30, 30, 30),
+    Accent = Color3.fromRGB(0, 200, 255),
+    -- Add all theme properties...
+})
+```
+
+```lua
+local CombatTab = Zyren:CreateTab("Combat")
+local MainGroup = CombatTab:CreateGroup("Main", "left")
+```
+```lua
+MainGroup:AddToggle({
+    Text = "Aimbot",
+    Default = false,
+    Callback = function(val)
+        _G.AimbotEnabled = val
+    end
+})
+```
+```lua
+MainGroup:AddSlider({
+    Text = "Aimbot Smoothing",
+    Min = 1,
+    Max = 10,
+    Default = 5,
+    Callback = function(val)
+        _G.AimbotSmoothing = val
+    end
+})```
