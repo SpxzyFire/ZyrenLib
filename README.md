@@ -103,9 +103,8 @@ SettingsTab:AddLabel({
 ```lua
 -- Change values programmatically
 aimbotToggle:SetValue(true)  -- Turn on toggle
-Custom Themes
-lua
-Copy
+```
+```lua
 Zyren:SetTheme({
     Background = Color3.fromRGB(30, 30, 30),
     Accent = Color3.fromRGB(0, 200, 255),
