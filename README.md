@@ -1,16 +1,18 @@
-Basic Usage
-Creating UI Structure
-lua
-Copy
+```lua
+local Zyren = loadstring(game:HttpGet("https://raw.githubusercontent.com/YourUsername/ZyrenLib/main/Source.lua"))({
+    WindowTitle = "Your UI Title",
+    ColorTheme = "Synapse"  -- Choose from: Synapse, Dark, Red, Ocean, Midnight, GrapeTheme
+})```
+```lua
 -- Create tabs
 local MainTab = Zyren:CreateTab("Main")
 local SettingsTab = Zyren:CreateTab("Settings")
-
+```
+```lua
 -- Create group boxes (left/right columns)
 local CombatGroup = MainTab:CreateGroup("Combat", "left")
 local VisualGroup = MainTab:CreateGroup("Visuals", "right")
-Adding Controls
-Button:
+```
 
 ```lua
 CombatGroup:AddButton({
